@@ -1,0 +1,59 @@
+# depslib dependency file v1.0
+1418649492 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\npc.cpp
+	"NPC.h"
+
+1418663336 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\npc.h
+
+1418674987 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\main.cpp
+	<sstream>
+	<allegro5/allegro.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_font.h>
+	<iostream>
+	"npc.h"
+	"Player.h"
+	"Enemigo1.h"
+	"Enemigo2.h"
+	"Enemigo3.h"
+	"Enemigo4.h"
+	<cmath>
+
+1418649746 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\player.h
+	"NPC.h"
+
+1418598491 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\nivel.cpp
+	"nivel.h"
+
+1418601516 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\nivel.h
+
+1418663336 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\player.cpp
+	"Player.h"
+
+1418666766 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo1.cpp
+	"Enemigo1.h"
+
+1418652140 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo1.h
+	"NPC.h"
+
+1418666766 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo2.cpp
+	"Enemigo2.h"
+
+1418653404 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo2.h
+	"NPC.h"
+
+1418666766 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo3.cpp
+	"Enemigo3.h"
+
+1418653404 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo3.h
+	"NPC.h"
+
+1418663336 source:c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo4.cpp
+	"Enemigo4.h"
+
+1418653404 c:\users\jesus\dropbox\clases unitec\programacion 3\final_project\enemigo4.h
+	"NPC.h"
+
