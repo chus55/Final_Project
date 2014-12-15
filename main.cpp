@@ -24,16 +24,16 @@ using namespace std;
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_FONT *font;
-ALLEGRO_BITMAP *player[17], *bg, *infection[10], *planets[10], *destroyed[10], *fire, *fire2, *ene1,*ene2,*ene3,*ene4, *galaxy[17], *sparks[12];
+ALLEGRO_BITMAP *player[17], *bg, *infection[10], *planets[10], *destroyed[10], *fire, *fire2, *fire3, *fire4, *ene1,*ene2,*ene3,*ene4, *galaxy[17], *sparks[12];
 ALLEGRO_SAMPLE *music, *sfx;
 ALLEGRO_TIMER *timer;
 ALLEGRO_EVENT_QUEUE *event_queue;
 ALLEGRO_KEYBOARD_STATE keyState;
 
-bool done = false, draw = true, infected = false, nivel1 = true, nivel2 = false, nivel3 = false, fire11 = false, fire22=false, secreto=false, iniciar = false, menu1=false;
+bool done = false, draw = true, infected = false, nivel1 = true, nivel2 = false, nivel3 = false, fire11 = false, fire22=true, secreto=false, iniciar = false, menu1=false;
 int lives = 6, x = 0, y = 0, infected_counter = 0, player_counter = 0, planet_counter_x = 200, planet_counter_y = -300, planet = 0,
 destruido1_x = 200, destruido1_y = -200,destruido2_x = 200, destruido2_y = -200, destruido1 = 0, destruido2 = 0, player_width = 100, enemigos = 0,
-fire111 = 0, fire222 = 0, pos_x=0, player_health = 0, explotion = 0, sparky = 0;
+fire111 = 0, fire222 = 0, pos_x=0, player_health = 0, explotion = 0, sparky = 0, pos_enemigo_x=0, pos_enemigo_y=0;
 Player plr; Enemigo1 enemy1; Enemigo2 enemy2; Enemigo3 enemy3; Enemigo4 enemy4;
 int randomizer()
 {
@@ -96,6 +96,9 @@ void initPlanets()
 }
 void initEnemies()
 {
+    fire2=al_load_bitmap("assets/lasers/laserRed01.png");
+    fire3=al_load_bitmap("assets/lasers/laserRed01.png");
+    fire4=al_load_bitmap("assets/lasers/laserRed01.png");
     if(nivel1==true)
     {
         nivel2 = false;
@@ -286,7 +289,7 @@ void renderExplosion(int x, int y)
             explotion++;
         }else
         {
-            al_rest(2.0);
+            //al_rest(2.0);
             if(nivel1)
             {
                 nivel2=true;
@@ -397,6 +400,28 @@ void renderInfection()
         al_draw_bitmap(infection[infected_counter], 0,0,NULL);
     }
 }
+
+void disparar(int x, int y)
+{
+    if(fire22)
+    {
+        al_draw_bitmap(fire2,x+50,y+fire222,NULL);
+        al_draw_bitmap(fire3,x,y+fire222,NULL);
+        al_draw_bitmap(fire4,x-50,y+fire222,NULL);
+        fire222+=20 ;
+        if(fire222>750)
+        {
+            //fire22 = false;
+            fire222=0;
+        }
+        if(collision(x,y+fire222,plr.pos[0],plr.pos[1],al_get_bitmap_width(player[1]),al_get_bitmap_height(player[1])))
+        {
+            player_health--;
+            cout<<player_health<<endl;
+        }
+    }
+}
+
 void renderEnemies()
 {
     if(nivel1==true)
@@ -404,7 +429,10 @@ void renderEnemies()
         if(enemigos<enemy1.vida)
             renderSparks(enemy1.pos[0],enemy1.pos[1]);
         if(enemigos>0)
-        al_draw_bitmap(ene1,enemy1.pos[0],enemy1.pos[1],NULL);
+        {
+            al_draw_bitmap(ene1,enemy1.pos[0],enemy1.pos[1],NULL);
+            disparar(enemy1.pos[0],enemy1.pos[1]);
+        }
         else
             renderExplosion(enemy1.pos[0],enemy1.pos[1]);
     }
@@ -498,7 +526,7 @@ void instructions()
 }
 void menu()
 {
-
+    bg = al_load_bitmap("assets/backgrounds/menu.png");
     al_register_event_source(event_queue, al_get_keyboard_event_source());
     al_draw_bitmap(bg, 0,0,NULL);
     al_flip_display();
@@ -530,13 +558,13 @@ int main()
 
     initialize();
 
-//    while(!iniciar)
-//    {
-//        menu();
-//
-//    }
-//    initEnemies();
-//    initLevel();
+    while(!iniciar)
+    {
+        menu();
+
+    }
+    initEnemies();
+    initLevel();
     while(!done)
     {
       ALLEGRO_EVENT event;
